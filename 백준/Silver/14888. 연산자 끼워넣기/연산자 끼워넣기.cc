@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -12,7 +11,6 @@ void dfs(int idx, int cur, int sum, int sub, int mul, int div) {
     if (idx == n) {
         maxx = max(cur, maxx);
         minn = min(cur, minn);
-        return;
     }
     if ((sum | sub | mul | div) == 0) {
         return;
@@ -29,7 +27,6 @@ void dfs(int idx, int cur, int sum, int sub, int mul, int div) {
     if (div > 0) {
         dfs(idx + 1, cur / v[idx], sum, sub, mul, div - 1);
     }
-    return;
 }
 
 int main() {

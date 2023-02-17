@@ -321,6 +321,7 @@
 |1005. ACM Craft|[링크](./%EB%B0%B1%EC%A4%80/Gold/1005.%E2%80%85ACM%E2%80%85Craft/ACM%E2%80%85Craft.cc)|
 |1011. Fly me to the Alpha Centauri|[링크](./%EB%B0%B1%EC%A4%80/Gold/1011.%E2%80%85Fly%E2%80%85me%E2%80%85to%E2%80%85the%E2%80%85Alpha%E2%80%85Centauri/Fly%E2%80%85me%E2%80%85to%E2%80%85the%E2%80%85Alpha%E2%80%85Centauri.cc)|
 |1013. Contact|[링크](./%EB%B0%B1%EC%A4%80/Gold/1013.%E2%80%85Contact/Contact.cc)|
+|10159. 저울|[링크](./%EB%B0%B1%EC%A4%80/Gold/10159.%E2%80%85%EC%A0%80%EC%9A%B8/README.md)|
 |10423. 전기가 부족해|[링크](./%EB%B0%B1%EC%A4%80/Gold/10423.%E2%80%85%EC%A0%84%EA%B8%B0%EA%B0%80%E2%80%85%EB%B6%80%EC%A1%B1%ED%95%B4/README.md)|
 |1043. 거짓말|[링크](./%EB%B0%B1%EC%A4%80/Gold/1043.%E2%80%85%EA%B1%B0%EC%A7%93%EB%A7%90/README.md)|
 |1068. 트리|[링크](./%EB%B0%B1%EC%A4%80/Gold/1068.%E2%80%85%ED%8A%B8%EB%A6%AC/%ED%8A%B8%EB%A6%AC.cc)|

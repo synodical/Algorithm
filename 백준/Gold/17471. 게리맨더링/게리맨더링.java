@@ -6,8 +6,7 @@ import java.util.*;
 public class Main {
     static int n;
     static int[] population;
-    static List<Integer> adj[];
-    static int[][] arr;
+    static List<Integer>[] adj;
     static int[] parent;
     static int ans = Integer.MAX_VALUE;
     static boolean[] visit;
@@ -17,7 +16,6 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         population = new int[n+1];
         adj = new ArrayList[n+1];
-        arr = new int[n + 1][n + 1];
         parent = new int[n + 1];
         visit = new boolean[n + 1];
         for (int i = 1; i <= n; i++) {
@@ -30,8 +28,7 @@ public class Main {
             for (int j = 1; j <= num; j++) {
                 int a = Integer.parseInt(st.nextToken());
                 adj[i].add(a);
-                adj[a].add(i); // 양방향
-                arr[i][a] = arr[i][a] = 1;
+                adj[a].add(i); // 양방향 저장
             }
         }
 
@@ -42,7 +39,7 @@ public class Main {
             }
             List<Integer> red = new ArrayList<>();
             List<Integer> blue = new ArrayList<>();
-            if (cnt > 0 && cnt < (n / 2) + 1) {
+            if (cnt > 0 && cnt < (n / 2) + 1) { // 1개 이상, n/2개 이하의 수로 구성된 red, blue 조합
                 for (int j = 0; j < n; j++) {
                     if ((i & (1 << j)) != 0) red.add(j + 1);
                 }
@@ -54,14 +51,16 @@ public class Main {
                 for (int j = 0; j <= n; j++) {
                     parent[j] = j;
                 }
-
-                gary(red);
+                // union-find를 진행하는 gary 함수
+                // 같은 색이고, 인접하다면 union한다.
+                
+                gary(red); // 게리맨더링 진행 (각 구역의 조상이 서로 같은지)
                 gary(blue);
                 int redTotal = 0;
                 int blueTotal = 0;
                 boolean flag = true;
                 for (int j = 1; j <= n; j++) {
-                    visit[j] = false;
+                    visit[j] = false; // 조합마다 bfs 진행하므로 방문 배열 초기화
                 }
 
                 if (bfs(red, red.get(0)) && bfs(blue, blue.get(0))) {
@@ -82,8 +81,6 @@ public class Main {
                 }
 
             }
-            // 선택된 red 완성 (1부터 시작)
-
         }
         if (ans == Integer.MAX_VALUE) {
             ans = -1;
@@ -104,7 +101,7 @@ public class Main {
         else parent[p1] = p2;
     }
 
-    static void gary(List<Integer> color) {
+    static void gary(List<Integer> color) { // 같은 색 배열의 인덱스이고 인접하다면 같은 구역으로 묶는다 
         for (int cur : color) {
             for (int i = 0; i < adj[cur].size(); i++) {
                 int nxt = adj[cur].get(i);
@@ -113,7 +110,9 @@ public class Main {
             }
         }
     }
-    static boolean bfs(List<Integer> color, int c) { // dfs check
+    static boolean bfs(List<Integer> color, int c) { // bfs check
+        // 모든 노드 탐색 - bfs 진행
+        // 노드가 서로 연결되어 있고 같은 구역이라면 true, 아니면 false 반환
         Queue<Integer> q = new ArrayDeque<>();
         q.add(c);
         visit[c] = true;

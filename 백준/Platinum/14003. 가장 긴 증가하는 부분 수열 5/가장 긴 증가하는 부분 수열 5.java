@@ -39,7 +39,7 @@ public class Main {
             int insertPosition = Arrays.binarySearch(C, 0, end, arr[i]); 
             
             if (insertPosition>=0) {
-            	list.add(end);
+            	list.add(insertPosition);
             	continue;
             }
             insertPosition = Math.abs(insertPosition)-1;  

@@ -1,29 +1,44 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static int n, m;
+    static int[] tree;
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n];
-        int[] sum = new int[n+1];
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
-        sum[1] = arr[0];
-        for (int i = 2; i <= n; i++) {
-            sum[i] = sum[i - 1] + arr[i-1];
+        tree = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            update(i, Integer.parseInt(st.nextToken()));
         }
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            System.out.println(sum[b] - sum[a-1]);
+            bw.write(sum(b) - sum(a - 1) + "\n");
         }
+        bw.flush();
+        bw.close();
+    }
+
+    public static void update(int idx, int value) {
+        while (idx <= n) {
+            tree[idx] += value;
+            idx = idx + (idx & -idx);
+        }
+    }
+
+    public static long sum(int idx) {
+        long result = 0;
+        while (idx > 0) {
+            result += tree[idx];
+            idx = idx - (idx & -idx);
+        }
+        return result;
     }
 }
